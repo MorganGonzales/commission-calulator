@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Morgy\CommissionTask\Domain;
 
-class Operation
+class BaseOperation
 {
     private string $date;
 
@@ -14,13 +14,18 @@ class Operation
 
     private string $type;
 
-    private string $amount;
+    private float $amount;
 
     private string $currency;
 
     private function __construct(array $data)
     {
-        list($this->date, $this->userId, $this->userType, $this->type, $this->amount, $this->currency) = $data;
+        $this->date = $data[0];
+        $this->userId = (int) $data[1];
+        $this->userType = $data[2];
+        $this->type = $data[3];
+        $this->amount = (float) $data[4];
+        $this->currency = $data[5];
     }
 
     public static function fromArray(array $data): self
@@ -48,7 +53,7 @@ class Operation
         return $this->type;
     }
 
-    public function getAmount(): string
+    public function getAmount(): float
     {
         return $this->amount;
     }
