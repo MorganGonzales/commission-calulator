@@ -2,65 +2,79 @@
 
 namespace Morgy\CommissionTask\Tests\Domain;
 
-use Morgy\CommissionTask\Domain\BaseOperation;
+use Morgy\CommissionTask\Domain\Operation;
 use PHPUnit\Framework\TestCase;
 
-class BaseOperationTest extends TestCase
+class OperationTest extends TestCase
 {
-    private $sampleData = [
-        '2014-12-31',
-        4,
-        'private',
-        'withdraw',
-        1200.00,
-        'EUR',
-    ];
+    private array $sampleData = ['2014-12-31', 4, 'private', 'withdraw', '1200.00', 'EUR'];
 
-    public function testCreateInstanceFromArray()
+    /**
+     * @test
+     */
+    public function it_should_create_an_instance_from_array()
     {
-        $operation = BaseOperation::fromArray($this->sampleData);
+        $operation = Operation::fromArray($this->sampleData);
 
-        $this->assertInstanceOf(BaseOperation::class, $operation);
+        $this->assertInstanceOf(Operation::class, $operation);
     }
 
-    public function testGetTransactionDate()
+    /**
+     * @test
+     */
+    public function it_should_retrieve_the_date()
     {
-        $operation = BaseOperation::fromArray($this->sampleData);
+        $operation = Operation::fromArray($this->sampleData);
 
         $this->assertEquals('2014-12-31', $operation->getDate());
     }
 
-    public function testGetUserId()
+    /**
+     * @test
+     */
+    public function it_should_retrieve_the_user_id()
     {
-        $operation = BaseOperation::fromArray($this->sampleData);
+        $operation = Operation::fromArray($this->sampleData);
 
         $this->assertEquals(4, $operation->getUserId());
     }
 
-    public function testGetUserType()
+    /**
+     * @test
+     */
+    public function it_should_retrieve_the_user_type()
     {
-        $operation = BaseOperation::fromArray($this->sampleData);
+        $operation = Operation::fromArray($this->sampleData);
 
         $this->assertEquals('private', $operation->getUserType());
     }
 
-    public function testGetType()
+    /**
+     * @test
+     */
+    public function it_should_retrieve_the_operation_type()
     {
-        $operation = BaseOperation::fromArray($this->sampleData);
+        $operation = Operation::fromArray($this->sampleData);
 
         $this->assertEquals('withdraw', $operation->getType());
     }
 
-    public function testGetAmount()
+    /**
+     * @test
+     */
+    public function it_should_retrieve_the_amount()
     {
-        $operation = BaseOperation::fromArray($this->sampleData);
+        $operation = Operation::fromArray($this->sampleData);
 
-        $this->assertEquals(1200.00, $operation->getAmount());
+        $this->assertEquals('1200.00', $operation->getAmount());
     }
 
-    public function testGetCurrency()
+    /**
+     * @test
+     */
+    public function it_should_retrieve_the_currency()
     {
-        $operation = BaseOperation::fromArray($this->sampleData);
+        $operation = Operation::fromArray($this->sampleData);
 
         $this->assertEquals('EUR', $operation->getCurrency());
     }

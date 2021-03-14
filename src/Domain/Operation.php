@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Morgy\CommissionTask\Domain;
 
-class BaseOperation
+class Operation
 {
     private string $date;
 
@@ -14,7 +14,7 @@ class BaseOperation
 
     private string $type;
 
-    private float $amount;
+    private string $amount;
 
     private string $currency;
 
@@ -24,7 +24,7 @@ class BaseOperation
         $this->userId = (int) $data[1];
         $this->userType = $data[2];
         $this->type = $data[3];
-        $this->amount = (float) $data[4];
+        $this->amount = $data[4];
         $this->currency = $data[5];
     }
 
@@ -53,13 +53,13 @@ class BaseOperation
         return $this->type;
     }
 
-    public function getAmount(): float
+    public function getAmount(): string
     {
         return $this->amount;
     }
 
     public function getCurrency(): string
     {
-        return $this->currency;
+        return \strtoupper($this->currency);
     }
 }
