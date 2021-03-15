@@ -30,3 +30,7 @@ Unit test are executed by entering the command below:
 ```shell
 $ composer run tests
 ```
+
+## Limitations | Points for Improvement
+- Loading of the CSV file is pretty straightforward. Validation for the entered file has not been implemented.
+- Mapping validation of data from CSV file can be implemented on the `Operation` value object

@@ -11,12 +11,13 @@ use Morgy\CommissionTask\Service\ListCommissionPerOperation;
 function main($argv)
 {
     // Read the CSV contents and convert them as an array
-    if ($argv[1] ?? false) {
-        $csv = \array_map('str_getcsv', file($argv[1]));
+    if (!isset($argv[1])) {
+        exit('Cannot open CSV input file');
     }
 
     // Each item in the CSV array will be represented by a value object called `Operation`
     // and will be stored in this Aggregate `Operations`
+    $csv = \array_map('str_getcsv', file($argv[1]));
     $operations = Operations::fromArray($csv);
 
     // The service that orchestrates the calculation of commission fees for each `Operation`
