@@ -5,7 +5,7 @@ An create an application that handles operations provided in CSV format and calc
 To install, you simply clone this repository:
 
 ```shell
-$ git clone https://github.com/MorganGonzales/search-result-ranking.git
+$ git clone https://github.com/MorganGonzales/commission-calulator.git
 ```
 
 Inside the root directory of the project, install its dependencies using [Composer](https://getcomposer.org/).
