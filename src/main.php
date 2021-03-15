@@ -10,11 +10,16 @@ use Morgy\CommissionTask\Service\ListCommissionPerOperation;
 
 function main($argv)
 {
+    // Read the CSV contents and convert them as an array
     if ($argv[1] ?? false) {
         $csv = \array_map('str_getcsv', file($argv[1]));
     }
 
+    // Each item in the CSV array will be represented by a value object called `Operation`
+    // and will be stored in this Aggregate `Operations`
     $operations = Operations::fromArray($csv);
+
+    // The service that orchestrates the calculation of commission fees for each `Operation`
     $service = new ListCommissionPerOperation(
         new WithdrawCommision(ExchangeRateFactory::create('EUR')),
         new DepositCommission()
